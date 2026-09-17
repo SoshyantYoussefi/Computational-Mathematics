@@ -21,15 +21,15 @@ def gaussSeidel(A, b, x0, tol):
 #  Gauss-Seidel iteration which overwrites the current approximate solution
 #  with the new approximate solution (pseudocode available in the lecture
 #  notes on page 46)
-   max_i=50
-   for k in range(1, max_i):
-      for i in range(1, n):
+   max_i=500
+   for k in range(max_i):
+      for i in range(n):
          sum=0
-         for j in range(1, n):
+         for j in range(n):
             if j!=i:
                sum=sum+A[i][j]*x0[j]
          x0[i]=(b[i]-sum)/A[i][i]
-      r=b-A*x0
+      r=b-A@x0
       if np.linalg.norm(r)<tol*np.linalg.norm(b):
          break
 
@@ -42,7 +42,56 @@ off_diag = -1 * np.ones(n - 1)
 C = np.diag(main_diag) + np.diag(off_diag, 1) + np.diag(off_diag, -1)
 
 b = C @ (3.5 * np.ones(n))
-x0 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+x0 = np.ones(n)
 tol = 1e-8
 
-print(gaussSeidel(C, b, x0, tol ))
+#print(gaussSeidel(C, b, x0, tol ))
+
+#x_exact = 3.5 * np.ones(n)
+
+xVals, iter_count = gaussSeidel(C, b, x0, tol)
+#print(gaussSeidel(C, b, x0, tol))
+print(xVals)
+print(iter_count)
+
+#b = C @ x_exact
+#print(f"b: {b}")
+
+
+
+
+
+def gaussSeidel22e(A, b, x0, tol):
+
+    n, _ = A.shape
+    x = x0.copy()
+
+    max_its = 500
+
+    for k in range(1, max_its + 1):
+
+        x_old = x.copy()
+
+        for i in range(n):
+
+            s = 0
+
+            for j in range(n):
+
+                if j != i:
+                    s += A[i, j] * x[j]
+
+            x[i] = (b[i] - s) / A[i, i]
+
+        if np.linalg.norm(x - x_old) / np.linalg.norm(x) < tol:
+            break
+
+    return x, k
+
+x0 = np.ones(n)
+tol = 1e-8
+
+xVals, iter_count = gaussSeidel22e(C, b, x0, tol)
+
+print(xVals)
+print(iter_count)
