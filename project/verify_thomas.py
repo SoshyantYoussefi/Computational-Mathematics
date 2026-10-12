@@ -77,12 +77,7 @@ def main():
 
     lines.extend([
         "",
-        "Alla tester godkända.",
-        "Små lösningsfel och relativa residualer visar att algoritmen",
-        "löser dessa testproblem med hög noggrannhet. Skillnader från",
-        "exakt noll beror på avrundning i flyttalsaritmetiken.",
-        "Detta verifierar testfallen; det är inte ett bevis för att",
-        "Thomas utan pivotering fungerar för alla tridiagonala matriser.",
+        "Alla tester godkända."
     ])
 
     # 6. Spara tabellen i projektmappen, oavsett arbetsmapp vid körning.
