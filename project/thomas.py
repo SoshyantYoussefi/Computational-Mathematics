@@ -1,9 +1,4 @@
-"""Thomas-algoritmen för ett tridiagonalt linjärt system Ax = b.
-
-Kör filen direkt för ett exempel: python thomas.py
-Importera lösaren i andra skript: from thomas import thomas
-"""
-
+#Thomas-algoritmen för ett tridiagonalt linjärt system Ax = b.
 import numpy as np
 
 
